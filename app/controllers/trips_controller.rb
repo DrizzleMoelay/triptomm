@@ -16,6 +16,34 @@ class TripsController < ApplicationController
     end
   end
 
+  def show
+    @trip = Trip.find(params[:id])
+  end
+
+  def edit
+    @trip = Trip.find(params[:id])
+    if @trip.user_id != current_user.id
+      redirect_to root_path
+    end
+  end
+
+  def update
+    @trip = Trip.find(params[:id])
+    @trip.update_attributes(trip_params)
+     if @trip.save
+      redirect_to trip_path 
+    else
+      @trip.attributes = (trip_params)
+      render :edit
+    end
+  end
+
+  def destroy
+    trip = Trip.find(params[:id])
+    trip.destroy
+    redirect_to root_path
+  end
+
   private
 
   def trip_params

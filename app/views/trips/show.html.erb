@@ -1,0 +1,47 @@
+<main class="main">
+  <div class="inner">
+    <div class="trip__wrapper">
+      <p class="trip__hedding">
+        <%= @trip.title %>
+      </p>
+      <%= link_to "by #{@trip.user.name}", user_path(@trip.user.id), class: :trip__user %>
+      <% if user_signed_in? && current_user.id == @trip.user_id %>
+        <div class="trip__manage">
+          <%= link_to "編集する", edit_trip_path(@trip.id),method: :get, class: :trip__btn %>
+          <%= link_to "削除する", trip_path(@trip.id),method: :delete, class: :trip__btn %>
+        </div>
+      <% end %>
+      <div class="trip__image">
+        <%= image_tag @trip.image %>
+      </div>
+        <div class="trip__detail">
+          <p class="detail__title">案内</p>
+          <p class="detail__message">
+            <%= @trip.concept %>
+          </p>
+        </div>
+      </div>
+      <div class="trip__comments">
+        <% if user_signed_in? %>
+          <%= form_with model: [@trip, @comment] ,local: true do |f|%>
+            <div class="field">
+              <%= f.label :content, "コメント" %><br />
+              <%= f.text_field :content, id:"comment_content" %>
+            </div>
+            <div class="actions">
+              <%= f.submit "送信する", class: :form__btn  %>
+            </div>
+          <% end %>
+        <% end %>  
+        <ul class="comments_lists">
+            <li class="comments_list">
+            <% @comments.each do |comment| %>
+              <%= comment.content %>
+              <%= link_to comment.user.name, user_path(comment.user.id), class: :comment_user %>
+            </li>
+            <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</main>
