@@ -1,0 +1,7 @@
+<div class="card">
+  <%= link_to image_tag(trip.image, class: :card__img ), trip_path(trip.id), method: :get %>
+  <div class="card__body">
+    <%= link_to trip.title, trip_path(trip.id), method: :get, class: :card__title%>
+    <%= link_to "by #{trip.user.name}", user_path(trip.user.id), class: :card__user %>
+  </div>
+</div>
