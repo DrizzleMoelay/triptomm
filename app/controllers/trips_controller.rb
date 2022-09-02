@@ -18,6 +18,8 @@ class TripsController < ApplicationController
 
   def show
     @trip = Trip.find(params[:id])
+    @comment = Comment.new
+    @comments = @trip.comments.includes(:user)
   end
 
   def edit
