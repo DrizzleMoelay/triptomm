@@ -36,4 +36,4 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :trips
+- belongs_to :trip
