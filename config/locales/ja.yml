@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザー名
+      trip:
+        title: 名称
+        concept: 案内
+        image: 画像

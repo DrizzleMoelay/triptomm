@@ -1,5 +1,5 @@
 <%= form_with model: trip, local: true do |f|%>
-  <%= render 'layouts/error_messages', model: f.object %>
+<%= render 'layouts/error_messages', model: f.object %>
   <div class="field">
     <%= f.label :title, "名称" %><br />
     <%= f.text_field :title, id:"trip_title" %>
